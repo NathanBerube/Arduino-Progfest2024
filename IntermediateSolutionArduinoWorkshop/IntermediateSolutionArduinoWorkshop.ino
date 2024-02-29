@@ -3,11 +3,13 @@
 * Arduino Workshop, Progfest 2024
 * Nathan Bérubé, 15 Feb. 2024
 *
+* Threshold was fixed with a 20k resistor for the tension divider
+*
 *
 */
 byte readingPin = A0;
 int reading;
-int threshold = 15;
+int threshold = 700;
 
 void setup() {             
   Serial.begin(57600);
@@ -20,7 +22,7 @@ void setup() {
 void loop() {
   reading = analogRead(readingPin);
   Serial.println(reading);
-  if (reading > threshold){
+  if (reading < threshold){
     Serial.println("C'est le jour!");
   }
   else{
